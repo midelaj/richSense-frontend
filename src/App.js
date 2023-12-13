@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
 
-function App() {
+const App = () => {
+  const [teams, setTeams] = useState([]);
+  const [inputType, setInputType] = useState("");
+
+  const addTeam = () => {
+    if (inputType.trim() !== "") {
+      setTeams([...teams, inputType.trim()]);
+      setInputType("");
+    }
+  };
+
+  const onChangeInput = (e) => {
+    setInputType(e.target.value);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <center>
+        <h2>Team Management App</h2>
+        <input
+          type="text"
+          placeholder="Enter team name"
+          onChange={onChangeInput}
+          value={inputType}
+        />
+        <button onClick={addTeam}>Add</button>
+        <ol>
+          {teams.map((team, index) => (
+            <li key={index}>{team}</li>
+          ))}
+        </ol>
+      </center>
     </div>
   );
-}
+};
 
 export default App;
