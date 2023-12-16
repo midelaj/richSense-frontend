@@ -1,21 +1,29 @@
-import {
-    createBrowserRouter,
-    RouterProvider,
-  } from "react-router-dom"
-  import Home from "../pages/Home"
-  import Advisors from "../pages/Advisors"
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <div>Hello world!</div>,
-    },
-    {
-      path: "/Advisors",
-      element: <div>Advisors</div>,
-    },
-  ]);
-  const Router =()=>(
-    <RouterProvider router={router}/>
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Main from "layouts/Main";
+import Home from "../pages/Home";
+import Advisors from "../pages/Advisors";
+import AdvisorDetails from "pages/Advisors/Advisor"
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Main />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
 
-  )
-  export default Router;
+      {
+        path: "/advisors",
+        element: <Advisors />,
+      },
+
+      {
+        path: "/advisors/:advisorId",
+        element: <AdvisorDetails />,
+      },
+    ],
+  },
+]);
+const Router = () => <RouterProvider router={router} />;
+export default Router;
