@@ -1,5 +1,6 @@
 import { Formik } from "formik";
-import { Form,Button } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
+import { SignUp } from "pages/Users/api";
 
 const SignUpForm = () => {
   return (
@@ -18,11 +19,9 @@ const SignUpForm = () => {
           }
           return errors;
         }}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
+        onSubmit={async (user, { setSubmitting }) => {
+            await SignUp(user);
             setSubmitting(false);
-          }, 400);
         }}
       >
         {({
