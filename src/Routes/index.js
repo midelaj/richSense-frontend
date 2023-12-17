@@ -3,6 +3,8 @@ import Main from "layouts/Main";
 import Home from "../pages/Home";
 import Advisors from "../pages/Advisors";
 import AdvisorDetails from "pages/Advisors/Advisor"
+import SignUp from "pages/Users/SignUp";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -21,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "/advisors/:advisorId",
         element: <AdvisorDetails />,
+      },
+      {
+        path: "/signup",
+        element: <SignUp />,
       },
     ],
   },

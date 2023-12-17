@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 const AdvisorDetails = () => {
-  const { advisor, setAdvisor } = useState();
-  const { loading, setLoading } = useState(true);
+  const [advisor, setAdvisor] = useState();
+  const [loading, setLoading] = useState(true);
   const { advisorId } = useParams();
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const AdvisorDetails = () => {
     const response = await fetch(`http://localhost:5000/advisors/${advisorId}`);
     const jsonResponse = await response.json();
     setAdvisor(jsonResponse.data);
-    setLoading(false)
+    setLoading(false);
   };
 
   if (loading) {
@@ -22,8 +22,11 @@ const AdvisorDetails = () => {
   }
 
   return (
-    <div>Name: {advisor.Name} </div>
-  )
+    <>
+      <div>Name: {advisor.name} </div>
+      <div>Age: {advisor.age} </div>
+    </>
+  );
 };
 
 export default AdvisorDetails;
