@@ -3,6 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import { SignIN} from "pages/Users/api";
 import useAuth from "hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const SignInForm = () => {
   const { setAuth } = useAuth();
@@ -30,6 +31,7 @@ const SignInForm = () => {
             isLoggedIn: true,
             user: response.user,
           });
+          toast.success("Logged in successfully")
           navigate("/");
           setSubmitting(false);
         }}

@@ -1,6 +1,7 @@
 import { Formik } from "formik";
 import { Form, Button } from "react-bootstrap";
 import { SignUp } from "pages/Users/api";
+import toast from "react-toastify";
 
 const SignUpForm = () => {
   return (
@@ -21,7 +22,8 @@ const SignUpForm = () => {
         }}
         onSubmit={async (user, { setSubmitting }) => {
             await SignUp(user);
-            setSubmitting(false);
+          setSubmitting(false);
+        
         }}
       >
         {({

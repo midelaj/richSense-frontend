@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ToastContainer } from "react-toastify";
 import Router from "./Routes";
 
 import AuthContext from "contexts/AuthContexts";
@@ -9,9 +10,10 @@ function App() {
     user: null,
   });
 
-  console.log(auth.isLoggedIn)
+
   return (
     <div className="App">
+      <ToastContainer />
       <AuthContext.Provider value={{ auth, setAuth }}>
         <Router />
       </AuthContext.Provider>

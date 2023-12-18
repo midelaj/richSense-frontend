@@ -1,5 +1,6 @@
 import { Container, Nav } from "react-bootstrap";
 import { NavLink, Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import logo from "assests/images/logo.jpeg";
 import useAuth from "hooks/useAuth";
@@ -10,7 +11,10 @@ const Header = () => {
     setAuth({
       isLoggedIn: false,
       user: null,
+      
     });
+    toast.success("Logged out successfully")
+    
     
   }
 
@@ -48,6 +52,9 @@ const Header = () => {
               <Nav.Link onClick={signOut}>
                 signout
               </Nav.Link>
+              
+              // toast.success("Logged in successfully")
+              
             ) : (
               <div>
                 <button>
