@@ -1,9 +1,21 @@
 import { Container, Nav } from "react-bootstrap";
 import { NavLink, Link } from "react-router-dom";
 
-import logo from "assests/images/logo.png";
+import logo from "assests/images/logo.jpeg";
+import useAuth from "hooks/useAuth";
 
 const Header = () => {
+  const { isLoggedIn, setAuth } = useAuth();
+  const signOut = () => {
+    setAuth({
+      isLoggedIn: false,
+      user: null,
+    });
+    
+  }
+
+
+
   return (
     <header className="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
       <a
@@ -31,14 +43,26 @@ const Header = () => {
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link href="#" className="nav-link">
-            Login
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link as={Link} to="/signup" className="nav-link">
-            Signup
-          </Nav.Link>
+          <div className="text-end">
+            {isLoggedIn ? (
+              <Nav.Link onClick={signOut}>
+                signout
+              </Nav.Link>
+            ) : (
+              <div>
+                <button>
+                  <Nav.Link as={NavLink} to="/signin" className="nav-link">
+                    Signin
+                  </Nav.Link>
+                </button>
+                <Nav.Item>
+                  <Nav.Link as={Link} to="/signup" className="nav-link">
+                    Signup
+                  </Nav.Link>
+                </Nav.Item>
+              </div>
+            )}
+          </div>
         </Nav.Item>
       </Nav>
     </header>
