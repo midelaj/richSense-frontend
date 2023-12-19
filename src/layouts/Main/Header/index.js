@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 
 import logo from "assests/images/logo.jpeg";
 import useAuth from "hooks/useAuth";
+import { setToken } from "utils/storage";
 
 const Header = () => {
   const { isLoggedIn, setAuth } = useAuth();
@@ -14,6 +15,7 @@ const Header = () => {
       
     });
     toast.success("Logged out successfully")
+    setToken("")
     
     
   }

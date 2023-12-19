@@ -4,6 +4,7 @@ import { SignIN} from "pages/Users/api";
 import useAuth from "hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { setToken } from "utils/storage";
 
 const SignInForm = () => {
   const { setAuth } = useAuth();
@@ -31,6 +32,7 @@ const SignInForm = () => {
             isLoggedIn: true,
             user: response.user,
           });
+          setToken(response.token)
           toast.success("Logged in successfully")
           navigate("/");
           setSubmitting(false);

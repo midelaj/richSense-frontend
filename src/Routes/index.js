@@ -5,6 +5,8 @@ import Advisors from "../pages/Advisors";
 import AdvisorDetails from "pages/Advisors/Advisor"
 import SignUp from "pages/Users/SignUp";
 import SignIn from "pages/Users/SignIn";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const router = createBrowserRouter([
   {
