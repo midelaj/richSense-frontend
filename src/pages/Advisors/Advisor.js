@@ -1,19 +1,24 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
+import { fetchAdvisorAPI } from "./api";
+import Appointment from "../Appointment/components/index";
+
+import { Row, Col, Container } from "react-bootstrap";
 
 const AdvisorDetails = () => {
   const [advisor, setAdvisor] = useState();
   const [loading, setLoading] = useState(true);
-  const { advisorId } = useParams();
+
+  const {advisorId} = useParams();
 
   useEffect(() => {
     fetchAdvisor();
   }, []);
 
   const fetchAdvisor = async () => {
-    const response = await fetch(`http://localhost:5000/advisors/${advisorId}`);
-    const jsonResponse = await response.json();
-    setAdvisor(jsonResponse.data);
+    setLoading(true);
+    const advisor = await fetchAdvisorAPI(advisorId);
+    setAdvisor(advisor);
     setLoading(false);
   };
 
@@ -22,10 +27,12 @@ const AdvisorDetails = () => {
   }
 
   return (
-    <>
-      <div>Name: {advisor.name} </div>
-      <div>Age: {advisor.age} </div>
-    </>
+    < Container>
+      <Row>
+        <Col >{advisor.name}</Col>
+        <Col ><Appointment advisorId={advisor._id} /></Col>
+      </Row>
+    </Container >
   );
 };
 

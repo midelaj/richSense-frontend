@@ -5,6 +5,9 @@ import Advisors from "../pages/Advisors";
 import AdvisorDetails from "pages/Advisors/Advisor"
 import SignUp from "pages/Users/SignUp";
 import SignIn from "pages/Users/SignIn";
+import Appointments from "pages/Appointment";
+import Goals from "pages/Goals";
+import Expense from "pages/ExpenseTracking";
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -34,6 +37,20 @@ const router = createBrowserRouter([
       {
         path: "/signin",
         element: <SignIn />,
+      },
+
+      {
+        path: "/appoinments/new",
+        element: <Appointments />,
+      },
+
+      {
+        path: "/goals",
+        element: <Goals />,
+      },
+      {
+        path: "/expenses",
+        element: <Expense />,
       },
     ],
   },
