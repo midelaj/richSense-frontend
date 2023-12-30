@@ -12,15 +12,10 @@ const Header = () => {
     setAuth({
       isLoggedIn: false,
       user: null,
-      
     });
-    toast.success("Logged out successfully")
-    setToken("")
-    
-    
-  }
-
-
+    toast.success("Logged out successfully");
+    setToken("");
+  };
 
   return (
     <header className="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
@@ -47,17 +42,20 @@ const Header = () => {
           <Nav.Link as={NavLink} to="/advisors" className="nav-link">
             Advisors
           </Nav.Link>
+          <Nav.Link as={NavLink} to="/expenses" className="nav-link">
+            Expense
+          </Nav.Link>
+          <Nav.Link as={NavLink} to="/goals" className="nav-link">
+            Goals
+          </Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <div className="text-end">
             {isLoggedIn ? (
-              <Nav.Link onClick={signOut}>
-                signout
-              </Nav.Link>
-              
-              // toast.success("Logged in successfully")
-              
+              <Nav.Link onClick={signOut}>signout</Nav.Link>
             ) : (
+              // toast.success("Logged in successfully")
+
               <div>
                 <button>
                   <Nav.Link as={NavLink} to="/signin" className="nav-link">

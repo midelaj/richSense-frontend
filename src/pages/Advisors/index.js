@@ -16,7 +16,7 @@ const Advisors = () => {
     setAdvisors(jsonResponse.data);
   };
 
-  console.log("advisors", advisors);
+
 
   return (
     <div>
