@@ -2,14 +2,14 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Main from "layouts/Main";
 import Home from "../pages/Home";
 import Advisors from "../pages/Advisors";
-import AdvisorDetails from "pages/Advisors/Advisor"
+import AdvisorDetails from "pages/Advisors/Advisor";
 import SignUp from "pages/Users/SignUp";
 import SignIn from "pages/Users/SignIn";
 import Appointments from "pages/Appointment";
 import Goals from "pages/Goals";
 import Expense from "pages/ExpenseTracking";
-import 'react-toastify/dist/ReactToastify.css';
-
+import "react-toastify/dist/ReactToastify.css";
+import SignUpFormAdvisor from "pages/Advisors/components/SignUp";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +37,11 @@ const router = createBrowserRouter([
       {
         path: "/signin",
         element: <SignIn />,
+      },
+
+      {
+        path: "/signUp-Advisors",
+        element: <SignUpFormAdvisor />,
       },
 
       {

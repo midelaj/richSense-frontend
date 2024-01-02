@@ -30,6 +30,7 @@ const Appointments = () => {
   const createAppointment = async () => {
     const originalDate = moment(date, "ddd MMM DD YYYY HH:mm:ss [GMT] zz");
     const utcDate = originalDate.utc();
+    debugger
     const response = await AppointmentCreate({
       advisorId: advisorId,
       time: utcDate.format(),
