@@ -15,10 +15,11 @@ const SignUpFormAdvisor = () => {
       .string()
       .required()
       .oneOf(["english", "malayalam", "hindi"], "Invalid language"),
+    email: yup.string().email("Invalid email").required("Email is required"),
     password: yup
       .string()
-      .min(6, 'Password must be at least 6 characters')
-      .required(),
+      .min(6, "Password must be at least 6 characters")
+      .required("Password is required"),
   });
 
   return (
@@ -35,6 +36,7 @@ const SignUpFormAdvisor = () => {
         qualification: "",
         fee: "",
         language: "",
+        email: "",
         password: "",
       }}
     >
@@ -133,6 +135,24 @@ const SignUpFormAdvisor = () => {
                   {errors.language}
                 </Form.Control.Feedback>
               </InputGroup>
+            </Form.Group>
+          </Row>
+
+          <Row className="mb-3">
+            <Form.Group as={Col} md="6" controlId="validationFormikEmail">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                value={values.email}
+                onChange={handleChange}
+                isValid={touched.email && !errors.email}
+                isInvalid={touched.email && errors.email}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.email}
+              </Form.Control.Feedback>
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
           </Row>
 

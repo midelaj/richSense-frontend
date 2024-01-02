@@ -1,12 +1,12 @@
 import { Formik } from "formik";
 import { Form, Button } from "react-bootstrap";
-import { SignIN} from "pages/Users/api";
 import useAuth from "hooks/useAuth";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { setToken } from "utils/storage";
+import { SignInAdvisor } from "pages/Advisors/api";
 
-const SignInForm = () => {
+const SigninFormAdvisor= () => {
   const { setAuth } = useAuth();
   const navigate = useNavigate();
   return (
@@ -27,7 +27,7 @@ const SignInForm = () => {
         }}
         onSubmit={async (user, { setSubmitting }) => {
           setSubmitting(true);
-          const response = await SignIN(user);
+          const response = await SignInAdvisor(user);
           setAuth({
             isLoggedIn: true,
             user: response.user,
@@ -74,10 +74,6 @@ const SignInForm = () => {
             <Button type="submit" disabled={isSubmitting}>
               Submit
             </Button>
-
-            <Link to="/signIn-advisors" className="signup-link">
-              Sign In as Advisor
-            </Link>
           </form>
         )}
       </Formik>
@@ -85,4 +81,4 @@ const SignInForm = () => {
   );
 };
 
-export default SignInForm;
+export default SigninFormAdvisor;

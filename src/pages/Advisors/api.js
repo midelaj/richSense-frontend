@@ -39,3 +39,20 @@ export const fetchAdvisorAppointmentAPI = async (id, { date }) => {
     toast.error("failed to fetch advisor Appointment");
   }
 };
+
+export const SignInAdvisor = async (advisor) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_API_HOST}/advisors/login`,
+    {
+      method: "POST",
+      body: JSON.stringify(advisor),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
+  const jsonResponse = await response.json();
+
+  return jsonResponse.data;
+};

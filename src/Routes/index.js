@@ -10,6 +10,8 @@ import Goals from "pages/Goals";
 import Expense from "pages/ExpenseTracking";
 import "react-toastify/dist/ReactToastify.css";
 import SignUpFormAdvisor from "pages/Advisors/components/SignUp";
+import AdvisorAppointment from "pages/Advisors/components/AppointmentDetails";
+import SigninFormAdvisor from "pages/Advisors/components/SignIn";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +44,16 @@ const router = createBrowserRouter([
       {
         path: "/signUp-Advisors",
         element: <SignUpFormAdvisor />,
+      },
+
+      {
+        path: "/signIn-Advisors",
+        element: <SigninFormAdvisor />,
+      },
+
+      {
+        path: "/advisors/:advisorId/appointments",
+        element: <AdvisorAppointment />,
       },
 
       {

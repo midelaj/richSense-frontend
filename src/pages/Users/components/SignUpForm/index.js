@@ -68,7 +68,6 @@ const SignUpForm = () => {
                 md={6}
                 className="mb-2 mb-md-0 text-center text-md-left"
               >
-                {/* Use the Link component for navigation */}
                 <Link to="/signUp-advisors" className="signup-link">
                   Sign Up as Advisor
                 </Link>
