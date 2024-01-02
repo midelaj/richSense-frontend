@@ -1,7 +1,7 @@
 import { Formik } from "formik";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Row, Col } from "react-bootstrap";
 import { SignUp } from "pages/Users/api";
-import toast from "react-toastify";
+import { Link } from "react-router-dom";
 
 const SignUpForm = () => {
   return (
@@ -21,9 +21,8 @@ const SignUpForm = () => {
           return errors;
         }}
         onSubmit={async (user, { setSubmitting }) => {
-            await SignUp(user);
+          await SignUp(user);
           setSubmitting(false);
-        
         }}
       >
         {({
@@ -62,6 +61,19 @@ const SignUpForm = () => {
             <Button type="submit" disabled={isSubmitting}>
               Submit
             </Button>
+
+            <Row className="mt-4">
+              <Col
+                xs={12}
+                md={6}
+                className="mb-2 mb-md-0 text-center text-md-left"
+              >
+                {/* Use the Link component for navigation */}
+                <Link to="/signUp-advisors" className="signup-link">
+                  Sign Up as Advisor
+                </Link>
+              </Col>
+            </Row>
           </form>
         )}
       </Formik>

@@ -24,19 +24,21 @@ const AppointmentWidget = ({
     const selectedSlotTimeSplit = selectedSlotTime.split(":");
     const hour = selectedSlotTimeSplit[0];
     const minuteSplit = selectedSlotTimeSplit[1].split(" ");
-    const minute = minuteSplit[1];
-    const meridiem = minuteSplit[0];
+    const minute = minuteSplit[0];
+    const meridiem = minuteSplit[1];
     const bookingDate = selectedDate.set({
       hour,
       minute,
-      meridiem,
       seconds: 0,
+      meridiem,
     });
     navigate(`/appoinments/new?date=${bookingDate}&advisorId=${advisorId}`);
   };
   const appoinmentMap = useMemo(() => {
     return appointment.reduce((map, appointment) => {
-      map[moment(appointment.time).format("h-mm-a")] = appointment;
+      const localTime = moment(appointment.time).toLocaleString();
+
+      map[moment(localTime).format("h-mm-a")] = appointment;
       return map;
     }, {});
   }, [appointment]);
