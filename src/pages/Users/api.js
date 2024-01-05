@@ -3,7 +3,7 @@ import { getToken } from "utils/storage";
 
 
 export const SignUp = async (user) => {
-  const response = await fetch("http://localhost:5000/users", {
+  const response = await fetch("http://localhost:8000/users", {
     method: "POST",
       body: JSON.stringify(user),
       headers: {
@@ -18,7 +18,7 @@ export const SignUp = async (user) => {
 
 
 export const SignIN = async (user) => {
-  const response = await fetch("http://localhost:5000/users/login", {
+  const response = await fetch("http://localhost:8000/users/login", {
     method: "POST",
       body: JSON.stringify(user),
       headers: {
@@ -32,7 +32,7 @@ export const SignIN = async (user) => {
 };
 
 export const getCurrentUser = async (user) => {
-  const response = await fetch("http://localhost:5000/users/current-user", {
+  const response = await fetch("http://localhost:8000/users/current-user", {
     headers:
     {
       "Content-Type": "application/json",

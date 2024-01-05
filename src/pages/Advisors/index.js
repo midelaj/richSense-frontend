@@ -11,7 +11,7 @@ const Advisors = () => {
   }, []);
 
   const fetchAdvisors = async () => {
-    const response = await fetch("http://localhost:5000/advisors");
+    const response = await fetch("http://localhost:8000/advisors");
     const jsonResponse = await response.json();
     setAdvisors(jsonResponse.data);
   };

@@ -21,16 +21,11 @@ const AppointmentWidget = ({
 
   const onClickBook = () => {
     const selectedSlotTime = selectedSlot.time;
-    const selectedSlotTimeSplit = selectedSlotTime.split(":");
-    const hour = selectedSlotTimeSplit[0];
-    const minuteSplit = selectedSlotTimeSplit[1].split(" ");
-    const minute = minuteSplit[0];
-    const meridiem = minuteSplit[1];
+    const selectedTimeObject = moment(selectedSlotTime, 'hh:mm A');
     const bookingDate = selectedDate.set({
-      hour,
-      minute,
+      hour: selectedTimeObject.hour(),
+      minute:selectedTimeObject.minute(),
       seconds: 0,
-      meridiem,
     });
     navigate(`/appoinments/new?date=${bookingDate}&advisorId=${advisorId}`);
   };
@@ -45,7 +40,6 @@ const AppointmentWidget = ({
 
   
   const isSlotSelected = (time) => {
-
     const formattedTime = moment(time, "h-mm-a").format("h-mm-a")
     return !!appoinmentMap[formattedTime]
 }  
