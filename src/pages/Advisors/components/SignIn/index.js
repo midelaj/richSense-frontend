@@ -11,7 +11,6 @@ const SigninFormAdvisor= () => {
   const navigate = useNavigate();
   return (
     <div>
-      <h1>Sing in to RichSense</h1>
       <Formik
         initialValues={{ email: "", password: "" }}
         validate={(values) => {

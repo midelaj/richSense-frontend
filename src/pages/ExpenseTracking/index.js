@@ -12,6 +12,7 @@ import {
   FormControl,
   InputGroup,
 } from "react-bootstrap";
+import Title from "components/Title";
 
 // Validation schema using Yup
 const validationSchema = yup.object().shape({
@@ -65,6 +66,19 @@ const ExpenseForm = () => {
         errors,
         isSubmitting,
       }) => (
+        <>
+        <Title content="Expenses"   links={[
+          {
+            path: "/",
+            title: "Home",
+          },
+          {
+            path: "/expenses",
+            title: "Expenses",
+          },
+        ]}/>
+         <div className="dashboard-content">
+                <div className="container">
         <BootstrapForm noValidate onSubmit={handleSubmit}>
           <Row className="mb-3">
             <FormGroup as={Col} md="4" controlId="validationFormik01">
@@ -143,8 +157,12 @@ const ExpenseForm = () => {
             {isSubmitting ? "Submitting..." : "Save Expense"}
           </Button>
         </BootstrapForm>
+        </div>
+        </div>
+        </>
       )}
     </Formik>
+    
   );
 };
 
