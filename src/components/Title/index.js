@@ -7,7 +7,9 @@ const Title = ({ content, links = [] }) => {
         <div className="row align-items-center text-center">
           <div className="col-md-12 col-12">
             <h2 className="breadcrumb-title">{content}</h2>
+            {!!links.length && (
             <nav aria-label="breadcrumb" className="page-breadcrumb">
+             
               <ol className="breadcrumb">
                 {links.map((link, index) => (
                   <li className="breadcrumb-item" key={index}>
@@ -16,6 +18,7 @@ const Title = ({ content, links = [] }) => {
                 ))}
               </ol>
             </nav>
+            )}
           </div>
         </div>
       </div>

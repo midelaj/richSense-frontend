@@ -5,6 +5,8 @@ import Payment from "./Payment";
 import { AppointmentCreate, fetchConfirmAppointmentAPI } from "./api";
 import moment from "moment";
 
+import Title from "components/Title";
+
 const Appointments = () => {
   const { date, advisorId } = useQueryParams();
   const [advisor, setAdvisor] = useState();
@@ -15,22 +17,21 @@ const Appointments = () => {
     fetchAdvisor();
   }, []);
 
-
   const fetchAdvisor = async () => {
     try {
       setLoader(true);
       const advisorData = await fetchAdvisorAPI(advisorId);
       setAdvisor(advisorData);
-    } catch (error) { }
-    finally {
-      setLoader(false)
+    } catch (error) {
+    } finally {
+      setLoader(false);
     }
   };
 
   const createAppointment = async () => {
     const originalDate = moment(date, "ddd MMM DD YYYY HH:mm:ss [GMT] zz");
     const utcDate = originalDate.utc();
-    debugger
+    debugger;
     const response = await AppointmentCreate({
       advisorId: advisorId,
       time: utcDate.format(),
@@ -41,32 +42,40 @@ const Appointments = () => {
 
   const confirmAppointments = async () => {
     try {
-       setLoader(true);
-      const confirmAppointment = await fetchConfirmAppointmentAPI(appointment._id)
+      setLoader(true);
+      const confirmAppointment = await fetchConfirmAppointmentAPI(
+        appointment._id
+      );
     } catch (error) {
-      setLoader(false)
+      setLoader(false);
     }
-   
-  }
+  };
 
   const onPaymentSuccess = () => {
+    confirmAppointments();
+  };
 
-    confirmAppointments()
-   };
-  
   if (loader) {
-    return "loading"
+    return "loading";
   }
-
-  console.log({ advisor });
   return (
     <div>
-      <p>Advisor:{advisor.name}</p>
-      <p>date:{date}</p>
-      <Payment
-        onClickPay={createAppointment}
-        onPaymentSuccess={onPaymentSuccess}
-      />
+      <Title content="Complete the booking" />
+      <div className="dashboard-content">
+        <div className="container">
+          <div className="bookmarks-content grid-view featured-slider">
+            <div className="row">
+              <p className="mb-2">Advisor: {advisor.name}</p>
+              <p>Date: {date}</p>
+              <p>Amount: 500</p>
+              <Payment
+                onClickPay={createAppointment}
+                onPaymentSuccess={onPaymentSuccess}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

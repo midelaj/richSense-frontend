@@ -32,13 +32,18 @@ const Payment = ({ onPaymentSuccess, onClickPay }) => {
       },
     };
 
-    console.log({ options });
+  
 
     const rzpay = new Razorpay(options);
     rzpay.open();
   }, [Razorpay]);
 
-  return <Button onClick={handlePayment}>Book & Pay</Button>;
+  return (
+  <>
+ 
+  <Button onClick={handlePayment}>Book & Pay</Button>
+  
+  </>)
 };
 
 export default Payment;
