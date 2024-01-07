@@ -1,6 +1,6 @@
 import { Formik } from "formik";
 import { Form, Button } from "react-bootstrap";
-import { SignIN} from "pages/Users/api";
+import { SignIN } from "pages/Users/api";
 import useAuth from "hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -11,7 +11,6 @@ const SignInForm = () => {
   const navigate = useNavigate();
   return (
     <div>
-      <h1>Sing in to RichSense</h1>
       <Formik
         initialValues={{ email: "", password: "" }}
         validate={(values) => {
@@ -48,37 +47,62 @@ const SignInForm = () => {
           isSubmitting,
           /* and other goodies */
         }) => (
-          <form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type="email"
-                name="email"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.email}
-              />
-            </Form.Group>
-            {errors.email && touched.email && errors.email}
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>password</Form.Label>
-              <Form.Control
-                type="password"
-                name="password"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.password}
-              />
-            </Form.Group>
-            {errors.password && touched.password && errors.password}
-            <Button type="submit" disabled={isSubmitting}>
-              Submit
-            </Button>
+          <div className="login-content">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-6 col-lg-5 mx-auto">
+                  <div className="login-wrap">
+                    <div className="login-header">
+                      <h3>Welcome Back</h3>
+                      <p>Please Enter your Details</p>
+                    </div>
 
-            <Link to="/signIn-advisors" className="signup-link">
-              Sign In as Advisor
-            </Link>
-          </form>
+                    <form onSubmit={handleSubmit}>
+                      <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control
+                          type="email"
+                          name="email"
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          value={values.email}
+                        />
+                      </Form.Group>
+                      {errors.email && touched.email && errors.email}
+                      <Form.Group
+                        className="mb-3"
+                        controlId="formBasicPassword"
+                      >
+                        <Form.Label>password</Form.Label>
+                        <Form.Control
+                          type="password"
+                          name="password"
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          value={values.password}
+                        />
+                      </Form.Group>
+                      {errors.password && touched.password && errors.password}
+                      <div className="d-grid">
+                      <Button type="submit" disabled={isSubmitting}>
+                        Submit
+                      </Button>
+                      </div>
+
+                      <div className="text-center mt-2">
+                      <Link to="/signIn-advisors" className="signup-link">
+                        Sign In as Advisor
+                      </Link>
+                      </div>
+
+
+                   
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         )}
       </Formik>
     </div>

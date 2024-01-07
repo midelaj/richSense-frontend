@@ -1,7 +1,16 @@
+import Hero from "./components/Hero";
+import Features from './components/Features'
+import Services from './components/Services'
+import Popular from "./components/Popular";
+
+
 const Home = () => {
   return (
     <div>
-      <img src="https://placehold.co/400" alt="Placeholder" />
+     <Hero/>
+     <Features/>
+     <Services/>
+     <Popular/>
     </div>
   );
 };

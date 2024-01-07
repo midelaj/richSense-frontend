@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
-import Card from "components/Card";
-import { Row, Col, Container } from "react-bootstrap";
+import Title from "components/Title";
+import Card from "./components/Card";
 
 const Advisors = () => {
   const [advisors, setAdvisors] = useState([]);
@@ -16,21 +16,34 @@ const Advisors = () => {
     setAdvisors(jsonResponse.data);
   };
 
-
-
   return (
     <div>
-      <Container>
-        <Row>
-          {advisors.map((advisor) => {
-            return (
-              <Col className="mb-2">
-                <Card advisor={advisor} />
-              </Col>
-            );
-          })}
-        </Row>
-      </Container>
+      <Title
+        content="Advisors"
+        links={[
+          {
+            path: "/",
+            title: "Home",
+          },
+          {
+            path: "/advisors",
+            title: "Advisors",
+          },
+        ]}
+      />
+      <div className="dashboard-content">
+        <div className="container">
+          <div className="bookmarks-content grid-view featured-slider">
+            <div className="row">
+              {advisors.map((advisor) => (
+                <div className="col-lg-4 col-md-4 col-sm-6 " key={advisor._id}>
+                  <Card advisor={advisor} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

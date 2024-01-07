@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 const SignUpForm = () => {
   return (
     <div>
-      <h1>Sing up to RichSense</h1>
       <Formik
         initialValues={{ email: "", password: "" }}
         validate={(values) => {
@@ -35,45 +34,62 @@ const SignUpForm = () => {
           isSubmitting,
           /* and other goodies */
         }) => (
-          <form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type="email"
-                name="email"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.email}
-              />
-            </Form.Group>
-            {errors.email && touched.email && errors.email}
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>password</Form.Label>
-              <Form.Control
-                type="password"
-                name="password"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.password}
-              />
-            </Form.Group>
-            {errors.password && touched.password && errors.password}
-            <Button type="submit" disabled={isSubmitting}>
-              Submit
-            </Button>
+          <div className="login-content">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-6 col-lg-5 mx-auto">
+                  <div className="login-wrap">
+                    <div className="login-header">
+                      <h3>Create an Account</h3>
+                      <p>Please Enter your Details</p>
+                    </div>
+                    <form onSubmit={handleSubmit}>
+                      <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control
+                          type="email"
+                          name="email"
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          value={values.email}
+                        />
+                      </Form.Group>
+                      {errors.email && touched.email && errors.email}
+                      <Form.Group
+                        className="mb-3"
+                        controlId="formBasicPassword"
+                      >
+                        <Form.Label>password</Form.Label>
+                        <Form.Control
+                          type="password"
+                          name="password"
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          value={values.password}
+                        />
+                      </Form.Group>
+                      {errors.password && touched.password && errors.password}
+                      <Button type="submit" disabled={isSubmitting}>
+                        Submit
+                      </Button>
 
-            <Row className="mt-4">
-              <Col
-                xs={12}
-                md={6}
-                className="mb-2 mb-md-0 text-center text-md-left"
-              >
-                <Link to="/signUp-advisors" className="signup-link">
-                  Sign Up as Advisor
-                </Link>
-              </Col>
-            </Row>
-          </form>
+                      <Row className="mt-4">
+                        <Col
+                          xs={12}
+                          md={6}
+                          className="mb-2 mb-md-0 text-center text-md-left"
+                        >
+                          <Link to="/signUp-advisors" className="signup-link">
+                            Sign Up as Advisor
+                          </Link>
+                        </Col>
+                      </Row>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         )}
       </Formik>
     </div>

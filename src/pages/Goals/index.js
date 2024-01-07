@@ -11,6 +11,7 @@ import {
   Row,
   Alert,
 } from "react-bootstrap";
+import Title from "components/Title";
 
 // Validation schema using Yup
 const validationSchema = Yup.object().shape({
@@ -58,63 +59,80 @@ const GoalsCalculator = () => {
   };
 
   return (
-    <Container className="mt-5">
-      <Row className="justify-content-center">
-        <Col md={6}>
-          <Formik
-            initialValues={initialValues}
-            onSubmit={onSubmit}
-            validationSchema={validationSchema}
-          >
-            <Form as={BootstrapForm}>
-              <BootstrapForm.Group controlId="targetAmount">
-                <BootstrapForm.Label>Target Amount</BootstrapForm.Label>
-                <Field
-                  type="number"
-                  name="targetAmount"
-                  placeholder="Enter target amount"
-                  as={BootstrapForm.Control}
-                />
-              </BootstrapForm.Group>
+    <>
+      <Title
+        content="Expenses"
+        links={[
+          {
+            path: "/",
+            title: "Home",
+          },
+          {
+            path: "/goals",
+            title: "Goals",
+          },
+        ]}
+      />
+      <div className="dashboard-content">
+          <Container>
+            <Row className="justify-content-center">
+              <Col md={8}>
+                <Formik
+                  initialValues={initialValues}
+                  onSubmit={onSubmit}
+                  validationSchema={validationSchema}
+                >
+                  <Form as={BootstrapForm}>
+                    <BootstrapForm.Group controlId="targetAmount" className="mb-3">
+                      <BootstrapForm.Label>Target Amount</BootstrapForm.Label>
+                      <Field
+                        type="number"
+                        name="targetAmount"
+                        placeholder="Enter target amount"
+                        as={BootstrapForm.Control}
+                      />
+                    </BootstrapForm.Group>
 
-              <BootstrapForm.Group controlId="annualInterestRate">
-                <BootstrapForm.Label>
-                  Annual Interest Rate (%)
-                </BootstrapForm.Label>
-                <Field
-                  type="number"
-                  name="annualInterestRate"
-                  placeholder="Enter annual interest rate"
-                  as={BootstrapForm.Control}
-                />
-              </BootstrapForm.Group>
+                    <BootstrapForm.Group controlId="annualInterestRate" className="mb-3">
+                      <BootstrapForm.Label>
+                        Annual Interest Rate (%)
+                      </BootstrapForm.Label>
+                      <Field
+                        type="number"
+                        name="annualInterestRate"
+                        placeholder="Enter annual interest rate"
+                        as={BootstrapForm.Control}
+                      />
+                    </BootstrapForm.Group>
 
-              <BootstrapForm.Group controlId="durationInYears">
-                <BootstrapForm.Label>
-                  Investment Duration (Years)
-                </BootstrapForm.Label>
-                <Field
-                  type="number"
-                  name="durationInYears"
-                  placeholder="Enter investment duration"
-                  as={BootstrapForm.Control}
-                />
-              </BootstrapForm.Group>
+                    <BootstrapForm.Group controlId="durationInYears" className="mb-3">
+                      <BootstrapForm.Label>
+                        Investment Duration (Years)
+                      </BootstrapForm.Label>
+                      <Field
+                        type="number"
+                        name="durationInYears"
+                        placeholder="Enter investment duration"
+                        as={BootstrapForm.Control}
+                      />
+                    </BootstrapForm.Group>
 
-              <Button variant="primary" type="submit">
-                Calculate
-              </Button>
-            </Form>
-          </Formik>
+                    <Button variant="primary" type="submit">
+                      Calculate
+                    </Button>
+                  </Form>
+                </Formik>
 
-          {monthlyInvestment !== null && (
-            <Alert variant="success" className="mt-3">
-              Monthly Investment Amount: ${monthlyInvestment.toFixed(2)}
-            </Alert>
-          )}
-        </Col>
-      </Row>
-    </Container>
+                {monthlyInvestment !== null && (
+                  <Alert variant="success" className="mt-3">
+                    Monthly Investment Amount: ₹{monthlyInvestment.toFixed(2)}
+                  </Alert>
+                )}
+              </Col>
+            </Row>
+          </Container>
+        </div>
+    </>
   );
 };
 

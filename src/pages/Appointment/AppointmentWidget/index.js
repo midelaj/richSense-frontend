@@ -1,7 +1,7 @@
-import { Button, Card, Row, Col } from "react-bootstrap";
+import { Button, Row, Col } from "react-bootstrap";
 import DatePicker from "../../Advisors/components/DatePicker/index";
 import useAuth from "hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useMemo } from "react";
 import moment from "moment";
 
@@ -52,39 +52,46 @@ const AppointmentWidget = ({
   }
   
   return (
-    <Card>
+    <div>
+      <div className="mb-4">
+        <span className="me-2">Date: </span>
+     
       <DatePicker
         selectedDate={selectedDate}
         onChange={onChangeDate}
         minDate={minDate}
         maxDate={maxDate}
       />
+       </div>
       <Row>
         {slots.map((slot) =>
         {
           const isBooked = isSlotSelected(slot.time)
           return (
             <Col md={4}>
+               <div className="d-grid gap-1 mb-2">
               <Button
                 xs
+                fluid
                disabled={isBooked}
                 variant={getVariant(isBooked, slot)}
                 onClick={() => onChangeSlot(slot)}
               >
                 {slot.time}
               </Button>
+              </div>
             </Col>
           );
         })}
       </Row>
       <Row>
         {isLoggedIn ? (
-          <Button onClick={onClickBook}>Book</Button>
+          <Button onClick={onClickBook} className="mt-1">Book</Button>
         ) : (
-          <Button> Login to book</Button>
+          <Button as={Link} to={"/signin"}> Login to book</Button>
         )}
       </Row>
-    </Card>
+    </div>
   );
 };
 
